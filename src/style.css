@@ -1,0 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: inherit;
+
+}
+
+html body {
+  height: 100%;
+  width: 100%;
+}
+
+
+/* Background image */
+.hero {
+  position: relative;
+  /* Fit different types of viewports */
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/* Psuedo element that lets you change the brightness of the BG image without
+ * impacting the rest of the page elements */
+.hero::before {
+  content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   /* Position and center the image to scale nicely on all screens */
+   background: url('/home/tristan/the_odin_project/todo-list/src/images/tree-fishbowl.jpeg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center center;
+   filter: brightness(60%);
+}
+
+/* Set style for all content ontop of hero image */
+.hero-content {
+  position: relative;
+  color: #ffffff;
+  text-shadow: 1px 1px black;
+  text-transform: uppercase;
+}
+
+/* Holds both the regular and completed lists */
+.list-container {
+  margin: 30px auto;
+  width: 50vw;
+  display: flex;
+  overflow: auto;
+}
+
+/* Title of list */
+.list-header {
+  padding: 5px;
+  width: 210px;
+  margin-left: 10px;
+  /* Set bottom to 0 to avoid margin collapse between headers and lists*/
+  margin-bottom: 0;
+}
+
+#list-date {
+  font-size: 1.1rem;
+  width: 20rem;
+  font-weight: 200;
+  margin-top: 1rem;
+}
+
+/* Style compeleted header into a button */
+.list-header-completed {
+  width: 11rem;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  margin-left: 9px;
+  padding-left: 15px;
+  border: 5px solid black;
+  border-radius: 4px;
+  background-color: black;
+}
+
+.list-header-completed:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+/* Style for regular lists */
+.list {
+  /* Set to none */
+  list-style-type: none;
+  position: relative;
+  margin: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  padding: 5px;
+  font-size: 30px;
+  width: 50vw;
+}
+
+/* Style all list items */
+.list li {
+  border: 5px solid black;
+  border-radius: 4px;
+  background-color: black;
+  padding: 5px;
+  /* Create padding to the left of list item; custom checkbox will be inserted here */
+  padding-left: 50px;
+  margin: 5px;
+  margin-bottom: 0;
+}
+
+/* Set position of the priority icon */
+.priority {
+  position: absolute;
+  right: 1.8rem;
+  cursor: pointer;
+}
+
+/* Style [checked] priority star-icon */
+.checked {
+  color: rgba(255, 166, 0, 0.8);
+}
+
+/* Set [un-checked] priority star-icon */
+.unchecked {
+  color: rgba(245, 245, 245, 0.5);
+  
+}
+
+
+/* Change the box color of all even tasks */ 
+.list li:nth-child(even) {
+  background-color: rgb(27, 27, 27);
+  border-color: rgb(27, 27, 27);
+}
+
+/* Style the completed list */
+.list-completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.task-checkbox {
+  position: relative;
+  top: 0.3rem;
+  left: -2.5rem;
+  right: 0;
+  bottom: 0;
+}
+
+
+/* Checkbox container */
+.container {
+  display: block;
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color:  rgba(128, 128, 128, 0.3);
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: rgb(143, 143, 143);
+}
+
+/* When the checkbox is checked, add colored background */
+.container input:checked ~ .checkmark {
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  /* Color of checkmark */
+  border: solid whitesmoke;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
